@@ -28,6 +28,7 @@ class predictor:
         'Glucose': health_data.glucose,
         'Has_Diabetes': health_data.diabetes,
         'BMI': health_data.bmi,
+        'Heart_Rate': health_data.heart_rate,
         'Total_Cholestrol': health_data.total_cholestrol
         }
 
@@ -37,6 +38,7 @@ class predictor:
     def encoding(self, incoming_data):
 
         self.X_test = pd.DataFrame([incoming_data])
+
 
         # Define bin edges and labels for BMI categories
         bin_edges = [0, 18.5, 24.9, 29.9, 100]  # BMI categories: Underweight, Normal weight, Overweight, Obesity
@@ -51,7 +53,9 @@ class predictor:
         # self.X_test['Is_Smoker'] = self.X_test['Is_Smoker'].replace({'Yes': 1, 'No': 0 })
         # self.X_test['Has_BP_Meds'] = self.X_test['Has_BP_Meds'].replace({'Yes': 1, 'No': 0 })
 
-        self.X_test = self.X_test.reindex(columns=['Gender',
+        print(self.X_test)
+        self.X_test = self.X_test.reindex(columns=[
+            'Gender',
             'Age',
             'Is_Smoker',
             'Cigarettes_Per_Day',
