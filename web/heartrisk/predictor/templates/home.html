@@ -77,9 +77,21 @@
                 <label for="id_age">Age:</label>
                 <input type="number" name="age" id="id_age" min="0">
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="id_education">Education:</label>
-                {{ form.education }}
+                {{ form.education }} 
+            </div> -->
+            <div class="form-group">
+            <label for="id_education">Education:</label>
+            <select name="education" id="id_education">
+                <option value="">Please select</option>
+                <option value="postgraduate">Postgraduate</option>
+                <option value="graduate">Graduate</option>
+                <option value="highschool">Highschool</option>
+                <option value="primaryschool">Primaryschool</option>
+                <option value="uneducated">Uneducated</option>
+                <option value="none">None</option>
+            </select>
             </div>
             <div class="form-group">
                 <label for="id_current_smoker">Current Smoker:</label>
@@ -90,10 +102,7 @@
             </div>
              <div class="form-group">
                 <label for="id_cigs_per_day">Cigarettes per Day:</label>
-                <select name="cigs_per_day" id="id_cigs_per_day">
-                    <option value=1>Yes</option>
-                    <option value=0>No</option>
-                </select>
+                <input type="number" name="cigs_per_day" id="id_cigs_per_day" min="0">
             </div>
           <div class="form-group">
                 <label for="id_bp_meds">BP Meds:</label>
@@ -147,13 +156,13 @@
                 <label for="id_glucose">Glucose:</label>
                 <input type="number" name="glucose" id="id_glucose" min="0">
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="id_heart_stroke">Heart Stroke:</label>
                 <select name="heart_stroke" id="id_heart_stroke">
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
-            </div>
+            </div> -->
             <button type="submit">Submit</button>
         </form>
     </div>

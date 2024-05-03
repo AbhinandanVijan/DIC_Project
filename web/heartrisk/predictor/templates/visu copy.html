@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predictive Risk Assessment of Cardiovascular diseases</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            color: black;
+            background-color: white; /* Red background */
+        }
+        .container {
+            padding: 20px;
+        }
+        .white-theme {
+            background-color: #fff;
+            color: blac; /* Red text for contrast */
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+      .small-image {
+        width: 100%; /* Sets the desired size */
+        max-width: 400px; /* Sets a maximum width to the images */
+        height: auto; /* Keeps the aspect ratio intact */
+        }
+</style>
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cardiac Risk Prediction Result</h1>
+        <p>Your cardiac risk prediction is: <strong>{{ prediction }}</strong></p>
+        <!-- <h1>Correlation Heatmap</h1>
+        <img src="heatmap.png" alt="Heatmap"> -->
+        <a href="/">Try again</a>
+        <!-- Header -->
+        <h1 class="text-center mb-4">Predictive Risk Assessment Visualizations</h1>
+
+        <!-- Image Gallery -->
+        <div class="white-theme"> <!-- Corrected class name -->
+            <h2></h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <h2> Decision Tree has best accuracy</h1>
+                    <img src="{% static 'accuracies.png' %}" alt="Accuracies"class="small-image">
+                    <p>The bar chart compares the training accuracy of various machine learning models. The models represented include Logistic Regression, SVM (Support Vector Machine), Random Forest Classifier, Naive Bayes Classifier, Decision Tree Classifier, KNN (K-Nearest Neighbors), XGB (Extreme Gradient Boosting) Classifier, and Gradient Boosting Classifier. The y-axis represents the accuracy, scaled from 0 to 1.0, indicating how well each model performed during training. The Decison Tree Classifier appear to have the highest accuracy, closely followed by the XGB Classifier. On the other hand, the Logistic Regression and Naive Bayes Classifier show relatively lower performance. This visualization helps in comparing the effectiveness of each model in handling the training data, which is crucial for selecting the most appropriate model for specific machine learning tasks.</p>
+                </div>
+                
+                <div class="col-md-4">
+                    <h2> Decision Tree and its nodes</h1>
+                    <img src="{% static 'decisiontree.png' %}" alt="Decision Tree Visualization"class="small-image">
+                    <p>The above image depicts a detailed visualization of a decision tree model from our machine learning process. Decision trees are popular for their simplicity and interpretability, often used for classification and regression tasks. Each node in the tree represents a decision based on a certain feature, and the branches indicate the outcome of that decision, leading to either further splits or terminal nodes (leaves), which represent the final classification outcomes.
+
+                        This particular decision tree seems extensive, suggesting that the model might be complex or deeply learned, which can be ideal for capturing intricate patterns in data. The branches are color-coded, likely indicating different classes or decisions made at each node. Such visualizations are crucial for understanding how the model makes decisions, which features are most influential, and how different feature values lead to different predictions, thereby providing insights into the behavior of the model with respect to the data it was trained on.</p>
+                </div>
+                <div class="col-md-4">
+                    <h2> SHapley Additive exPlanations</h1>
+                    <img src="{% static 'shap.jpeg' %}" alt="SHAP"class="small-image">
+                    <p>The image presents a SHAP (SHapley Additive exPlanations) summary plot that illustrates the impact of different features on the output of a predictive model. Each dot on the plot represents a single observation from the dataset with its position on the x-axis indicating the SHAP value, which shows the impact on the model output. The color indicates the feature value: red for high and blue for low.
+
+                        From the plot, it's evident that 'Age' and 'Systolic_BP' (Systolic Blood Pressure) have significant and varying impacts on the model's predictions, with a mixture of positive and negative influences. Features like 'Cigarettes_Per_Day' and 'BMI' (Body Mass Index) also show notable variation in their impact, indicating diverse effects across different observations. The plot highlights the importance of these features in the model, providing insights into how each contributes to the prediction outcome, which can be vital for understanding model behavior in medical or health-related predictive analytics.</p>
+                    </div>
+            </div>
+
+                
+
+        </div>
+    </div>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

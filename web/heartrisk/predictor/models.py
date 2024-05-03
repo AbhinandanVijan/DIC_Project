@@ -21,5 +21,8 @@ class HealthData(models.Model):
     glucose = models.IntegerField()
     heart_stroke = models.CharField(max_length=10)
 
+
+
+
 def __str__(self):
         return f"HealthData {self.id}"

@@ -6,7 +6,8 @@ from sklearn.tree import DecisionTreeClassifier
 # Load the dataset
 class predictor:
     def __init__(self):
-        df = pd.read_csv('/Users/krishnanand/Downloads/web/Cleaned_Heart_disease.csv')
+        # no need to change the path it will automatically access the dataset in web folder 
+        df = pd.read_csv('../Cleaned_Heart_disease.csv')
         df.drop('Has_Prevalent_Stroke', axis=1, inplace=True)
         self.X_train = df.iloc[:, :-1]
         self.y_train = df.iloc[:, -1]
@@ -14,22 +15,20 @@ class predictor:
 
 
 
-    def formdata(self):
-        # Hardcoded sample data for prediction
+    def formdata(self,health_data):
         incoming_data = {
-            'Gender': 'Female', 
-            'Age': 55,  
-            'Is_Smoker': 'Yes', 
-            'Cigarettes_Per_Day': 5,  
-            'Systolic_BP': 1,  
-            'Diastolic_BP': 85,  
-            'Has_BP_Meds': 'Yes',  
-            'Has_Prevalent_Hypertension': 'Yes', 
-            'Glucose': 98, 
-            'Has_Diabetes': 0, 
-            'BMI': 26.5, 
-            'Heart_Rate': 77, 
-            'Total_Cholestrol': 230, 
+        'Gender': health_data.gender,
+        'Age': health_data.age,
+        'Is_Smoker': health_data.current_smoker,
+        'Cigarettes_Per_Day': health_data.cigs_per_day,
+        'Systolic_BP': health_data.sys_bp,
+        'Diastolic_BP': health_data.dia_bp,
+        'Has_BP_Meds': health_data.bp_meds,
+        'Has_Prevalent_Hypertension': health_data.prevalent_hypertension,
+        'Glucose': health_data.glucose,
+        'Has_Diabetes': health_data.diabetes,
+        'BMI': health_data.bmi,
+        'Total_Cholestrol': health_data.total_cholestrol
         }
 
         return incoming_data
@@ -46,11 +45,11 @@ class predictor:
         # Create a new column with BMI categories
         self.X_test['BMI_Category'] = pd.cut(self.X_test['BMI'], bins=bin_edges, labels=bin_labels, right=False)
 
-        self.X_test['Gender'] = self.X_test['Gender'].replace({'Male': 1, 'Female': 0})
+        self.X_test['Gender'] = self.X_test['Gender'].replace({'male': 1, 'female': 0})
         self.X_test['BMI_Category'] = self.X_test['Gender'].replace({'Underweight': 0, 'Normal weight': 1 , 'Overweight' : 2 , 'Obesity': 3 })
-        self.X_test['Has_Prevalent_Hypertension'] = self.X_test['Has_Prevalent_Hypertension'].replace({'Yes': 1, 'No': 0 })
-        self.X_test['Is_Smoker'] = self.X_test['Is_Smoker'].replace({'Yes': 1, 'No': 0 })
-        self.X_test['Has_BP_Meds'] = self.X_test['Has_BP_Meds'].replace({'Yes': 1, 'No': 0 })
+        # self.X_test['Has_Prevalent_Hypertension'] = self.X_test['Has_Prevalent_Hypertension'].replace({'Yes': 1, 'No': 0 })
+        # self.X_test['Is_Smoker'] = self.X_test['Is_Smoker'].replace({'Yes': 1, 'No': 0 })
+        # self.X_test['Has_BP_Meds'] = self.X_test['Has_BP_Meds'].replace({'Yes': 1, 'No': 0 })
 
         self.X_test = self.X_test.reindex(columns=['Gender',
             'Age',
@@ -95,13 +94,13 @@ class predictor:
         y_pred = best_model.predict(self.X_test)
         
         if y_pred[0] == 1 :
-            return 1
+            return "High chances of Heart Stroke"
         else:
-            return 0
+            return "Low chances of Heart Stroke"
 
 
 
-pred = predictor()
-forminput_data = pred.formdata()
-pred.encoding(forminput_data)
-print(pred.prediction())
+# pred = predictor()
+# forminput_data = pred.formdata()
+# pred.encoding(forminput_data)
+# print(pred.prediction())
